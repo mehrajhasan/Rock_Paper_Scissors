@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet" type="text/css" />
     <title>Rock Paper Scissors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&family=Outfit:wght@300&family=Quicksand:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type = "text/css" href="style.css">
+    <script src="app.js" defer></script>
 </head>
 <body>
     <div class = "game">
@@ -46,10 +47,10 @@
                     <img src = "https://cdn.ecosmetics.com/2020/05/ku-loader.gif">
                 </div>
             </div>
-            <div class = "options">
-                <button class = "rock">Rock</button>
-                <button class = "paper">Paper</button>
-                <button class = "scissors">Scissors</button>
+            <div class = "options" id="options">
+                <button class = "rock" id="rock">Rock</button>
+                <button class = "paper" id="paper">Paper</button>
+                <button class = "scissors" id="scissors">Scissors</button>
             </div>
         </div>
 
@@ -57,6 +58,21 @@
             <h5>made by mehraj hasan</h5>
         </div>
     </div>
-    <script src="app.js"></script>
+    <script>
+        const choices = document.getElementById('options')
+
+        choices.addEventListener('click', postInfo)
+
+        async function postInfo(event){
+            const clickedButton = event.target;
+
+            fetch('http://localhost:4001', {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({info: clickedButton.id})
+            })
+        };
+        
+    </script>
 </body>
 </html>
