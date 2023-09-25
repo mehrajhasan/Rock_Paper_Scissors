@@ -7,7 +7,9 @@ Welcome to my project! I had the joy of creating a Rock Paper Scissors game, whe
 
 **How to:**
 
-Users will be allowed three choices: Rock, Paper, Scissors. Once you select your choice, the server will randomize a selection and with this you will either win, lose, or come into a tie!
+TO play this game, you select one of three options. After you select an option, the computer will randomly generate a choice which will then 'battle' your choice and update the scoreboard accordingly. 
+
+**Demo Video:**
 
 
 
