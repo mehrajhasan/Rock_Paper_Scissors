@@ -12,36 +12,46 @@ app.listen(PORT, () =>
     console.log(`Listening on http://localhost:${PORT}`)
 );
 
+let userScore = 0;
+let serverScore = 0;
+
 app.post('/', (req,res) => {
     const { info } = req.body;
-    console.log(info);
     let user = info;
 
     function compChoice(){
         let choices = ['rock','paper','scissors'];
-        const result = choices[Math.floor(Math.random())*3];
+        let result = choices[Math.floor(Math.random()*3)];
         return result;
-    }
-    
+    }    
+
     let gameOver;
+    let compCh = compChoice();
     let tie = "Look, we tied!";
     let win = "Aw shucks, you win!";
     let loss = "Ha, I win this one!";
 
-    if (user == compChoice()){
+    if (user == compCh){
         gameOver = tie;
+        userScore += 0;
+        serverScore += 0;
     }
-    else if(user == "rock" && compChoice() == "paper"){
+    else if(user == "rock" && compCh == "paper"){
         gameOver = win;
+        userScore += 1;
     }
-    else if(user == "paper" && compChoice() == "rock"){
+    else if(user == "paper" && compCh == "rock"){
         gameOver = win;
+        userScore += 1;
     }
-    else if(user == "scissors" && compChoice() == "paper"){
+    else if(user == "scissors" && compCh == "paper"){
         gameOver = win;
+        userScore += 1;
     }
     else{
         gameOver = loss;
+        serverScore += 1;
     }
-    console.log(gameOver);
+
+    res.json({msg: gameOver, computerChoice: compCh, user: userScore, server: serverScore});
 })
