@@ -75,7 +75,11 @@
 
             const data = await res.json();
 
-            document.getElementById('userPic').setAttribute('src', `${clickedButton.id}.png`);
+            if(clickedButton.id == 'options'){
+                return 0;
+            } else{
+                document.getElementById('userPic').setAttribute('src', `${clickedButton.id}.png`);
+            }
             document.getElementById('compPic').setAttribute('src', `${data.computerChoice}.png`);
             document.getElementById('gameResult').textContent = `${data.msg}`;
             document.getElementById('scoreUser').textContent = `You: ${data.user}`;
