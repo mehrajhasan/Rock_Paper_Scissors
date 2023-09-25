@@ -23,7 +23,7 @@ app.post('/', (req,res) => {
         let choices = ['rock','paper','scissors'];
         let result = choices[Math.floor(Math.random()*3)];
         return result;
-    }    
+    }
 
     let gameOver;
     let compCh = compChoice();
@@ -31,7 +31,12 @@ app.post('/', (req,res) => {
     let win = "Aw shucks, you win!";
     let loss = "Ha, I win this one!";
 
-    if (user == compCh){
+    if (user == 'options'){
+        userScore += 0;
+        serverScore += 0;
+        gameOver = gameOver;
+    }
+    else if (user == compCh){
         gameOver = tie;
         userScore += 0;
         serverScore += 0;
@@ -53,5 +58,10 @@ app.post('/', (req,res) => {
         serverScore += 1;
     }
 
-    res.json({msg: gameOver, computerChoice: compCh, user: userScore, server: serverScore});
+    res.json({
+        msg: gameOver,
+        computerChoice: compCh,
+        user: userScore,
+        server: serverScore
+    });
 })
